@@ -45,7 +45,7 @@ def donatebook_view(request):
 
         bookname = request.POST["bookname"]
         author = request.POST["author"]
-        b = Book(name=bookname,author=author)
+        b = Book(name=bookname,author=author,user=request.user)
         b.save()
         return render(request,"donatebook.html",{
             "message": "added book"

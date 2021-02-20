@@ -70,7 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'library_m.wsgi.application'
 
-# AUTH_USER_MODEL = 'openbook.User'
+AUTH_USER_MODEL = 'openbook.User'
 
 
 

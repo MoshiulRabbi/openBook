@@ -14,10 +14,10 @@
     <ul>
         {% for book in books %}
         <li>Book id: {{book.id}}</li>
+        <li>Donated By: {{book.user.username}}</li>
         <li>Book name: {{book.name}}</li>
         <li>Book Author: {{book.author}}</li>
-
-
+        <br><br>
         {% endfor %}
 
 
