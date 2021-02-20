@@ -7,8 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+    <center>
     <h1>hello {{request.user.username}}</h1>
 
-    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+    <a class="nav-link" href="{% url 'logout' %}">Log Out</a> <br>
+    <a class="nav-link" href="{% url 'viewbook' %}">view all the book</a><br>
+
+    <a class="nav-link" href="{% url 'donatebook' %}">Donate Boook</a>
+</center>
+
 </body>
 </html>
