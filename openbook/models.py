@@ -11,11 +11,16 @@ class User(AbstractUser):
 class Book(models.Model):
     name = models.CharField(max_length=25)
     author = models.CharField(max_length=25)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user = models.CharField(max_length=25)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.user
+        return self.user.username
+
+
+
+
+
 
 
 # class Profile(models.Model):
