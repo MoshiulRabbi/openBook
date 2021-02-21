@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-
+from django.db import IntegrityError
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 
@@ -30,7 +30,34 @@ def login_view(request):
                 "message": "Invalid username and/or password."
             })
     else:
-        return render(request, "login.html")
+        return render(request, "login.html") 
+
+
+def register(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+
+        # Ensure password matches confirmation
+        password = request.POST["password"]
+        confirmation = request.POST["confirmation"]
+        if password != confirmation:
+            return render(request, "register.html", {
+                "message": "Passwords must match."
+            })
+
+        # Attempt to create new user
+        try:
+            user = User.objects.create_user(username,password)
+            user.save()
+        except IntegrityError:
+            return render(request, "register.html", {
+                "message": "Username already taken."
+            })
+        login(request, user)
+        return HttpResponseRedirect(reverse("home"))
+    else:
+        return render(request, "register.html")
+
 
 
 
