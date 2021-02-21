@@ -72,7 +72,8 @@ def donatebook_view(request):
 
         bookname = request.POST["bookname"]
         author = request.POST["author"]
-        b = Book(name=bookname,author=author,user=request.user)
+        username = request.user.username
+        b = Book(name=bookname,author=author,user=username)
         b.save()
         return render(request,"donatebook.html",{
             "message": "added book"
@@ -85,3 +86,21 @@ def donatebook_view(request):
 def view_book(request):
     books = Book.objects.all()
     return render(request, "allbook.html", {'books': books})
+
+
+
+# def profile(request):
+#     try:
+#         username = request.user.username
+#         donatedbook = Book.objects.get(user=username)
+#     except:
+#         return render(request, 'profile.html', {"error": True})
+
+#     return render(request, 'profile.html', {'donatedbook': donatedbook})
+
+
+
+def profile(request):
+    username = request.user.username
+    donatedbook = Book.objects.filter(user=username)
+    return render(request, 'profile.html', {'donatedbook': donatedbook})

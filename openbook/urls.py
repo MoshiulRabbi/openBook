@@ -8,4 +8,9 @@ urlpatterns = [
     path("donatebook", views.donatebook_view, name="donatebook"),
     path("viewbook", views.view_book, name="viewbook"),
     path("register",views.register, name="register"),
+    path('profile/',views.profile, name="profile"),
 ]
+
+# url(r'^profile/(?P<username>\w+)/$',profile,name='profile'),
+
+# path('<str:username>/',views.profile, name="profile"),

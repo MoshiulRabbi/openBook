@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AllbookList</title>
+    <title>Profile</title>
 </head>
 <body>
-<center>
-    <h2>All Book List</h2>
+    <center>
 
+    <h2>Profile</h2>
+ 
+
+    <h1>hello {{request.user.username}} You donated these Book</h1>
 
     <ul>
-        {% for book in books %}
+        {% for book in donatedbook %}
         <li>Book id: {{book.id}}</li>
-        <li>Donated By: {{book.user}}</li>
         <li>Book name: {{book.name}}</li>
         <li>Book Author: {{book.author}}</li>
         <br><br>
@@ -22,8 +24,8 @@
 
 
     </ul>
-    <a class="nav-link" href="{% url 'donatebook' %}">Donate Boook</a>
 </center>
 
-</body> 
+   
+</body>
 </html>
