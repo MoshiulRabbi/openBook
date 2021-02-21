@@ -81,6 +81,7 @@ def donatebook_view(request):
         return render(request,"donatebook.html")
 
 
+#All the Book Donated By all the User
 
 def view_book(request):
     books = Book.objects.all()
@@ -88,9 +89,17 @@ def view_book(request):
 
 
 
+#User Profile that shows total donated BOOK
+
 def profile(request):
     donatedbook = Book.objects.filter(user=request.user)
     return render(request, 'profile.html', {'donatedbook': donatedbook})
 
 
 
+
+#Single Book Details
+
+def book_details(request, book_id):
+    b = Book.objects.get(pk=book_id)
+    return render(request,"bookdetails.html", {"b":b})

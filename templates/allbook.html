@@ -13,10 +13,17 @@
 
     <ul>
         {% for book in books %}
-        <li>Book id: {{book.id}}</li>
-        <li>Donated By: {{book.user}}</li>
+        <!-- <li>Book id: {{book.id}}</li>
+        <li>Donated By: {{book.user}}</li> -->
+
+            <a href="{% url 'book_details' book.id %}" >
+
         <li>Book name: {{book.name}}</li>
+    </a>
         <li>Book Author: {{book.author}}</li>
+    
+
+
         <br><br>
         {% endfor %}
 
