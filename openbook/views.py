@@ -5,12 +5,17 @@ from django.urls import reverse
 from django.db import IntegrityError
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
 
 
 
 # Create your views here.
+@login_required(login_url='login')
 def home_view(request):
     return render(request,"home.html")
+
+
 
 
 def login_view(request):
@@ -61,12 +66,15 @@ def register(request):
 
 
 
-
+@login_required(login_url='login')
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("login"))
 
 
+
+
+@login_required(login_url='login')
 @csrf_exempt
 def donatebook_view(request):
     if request.method == 'POST':
@@ -82,16 +90,20 @@ def donatebook_view(request):
         return render(request,"donatebook.html")
 
 
-#All the Book Donated By all the User
 
+
+
+#All the Book Donated By all the User
+@login_required(login_url='login')
 def view_book(request):
     books = Book.objects.all()
     return render(request, "allbook.html", {'books': books})
 
 
 
-#User Profile that shows total donated BOOK
 
+#User Profile that shows total donated BOOK
+@login_required(login_url='login')
 def profile(request):
     donatedbook = Book.objects.filter(user=request.user)
     return render(request, 'profile.html', {'donatedbook': donatedbook})
@@ -100,7 +112,7 @@ def profile(request):
 
 
 #Single Book Details
-
+@login_required(login_url='login')
 def book_details(request, book_id):
     b = Book.objects.get(pk=book_id)
     return render(request,"bookdetails.html", {"b":b})
