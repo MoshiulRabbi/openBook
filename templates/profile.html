@@ -16,6 +16,7 @@
 
     <ul>
         {% for book in donatedbook %}
+        <p>Delete </p>
         <li>Book id: {{book.id}}</li>
         <li>Book name: {{book.name}}</li>
         <li>Book Author: {{book.author}}</li>
@@ -34,6 +35,7 @@
         <li>Book id: {{lbbook.book.id}}</li>
         <li>Book name: {{lbbook.book.name}}</li>
         <li>Book Author: {{lbbook.book.author}}</li>
+        <li>Book Owner: {{lbbook.book.user.username}}</li>
         <br><br>
         {% endfor %}
 
