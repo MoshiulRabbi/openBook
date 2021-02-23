@@ -13,15 +13,16 @@
         
         {%if request.user.username != b.user.username%}
         <a href="{% url 'lend' b.id %}" >Lend this Book</a>
-        
+
+        {%else %}
+        <p><strong>Youre the owner of this Book</strong></p>
+
         {%endif%}
+
         <li>Book id: {{b.id}}</li>
         <li>Donated By: {{b.user}}</li>
         <li>Book name: {{b.name}}</li>
         <li>Book Author: {{b.author}}</li>
-        {%if request.user.username == b.user.username%}
-        <p><strong>Youre the owner of this Book</strong></p>
-        {%endif%}
         <br><br>
       
 
