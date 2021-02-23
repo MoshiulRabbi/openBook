@@ -81,7 +81,8 @@ def donatebook_view(request):
 
         bookname = request.POST["bookname"]
         author = request.POST["author"]
-        b = Book(name=bookname,author=author,user=request.user)
+        status = "A"
+        b = Book(name=bookname,author=author,user=request.user,status=status)
         b.save()
         return render(request,"donatebook.html",{
             "message": "added book"
@@ -96,8 +97,9 @@ def donatebook_view(request):
 #All the Book Donated By all the User
 @login_required(login_url='login')
 def view_book(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(status="A")
     return render(request, "allbook.html", {'books': books})
+
 
 
 
@@ -106,7 +108,11 @@ def view_book(request):
 @login_required(login_url='login')
 def profile(request):
     donatedbook = Book.objects.filter(user=request.user)
-    return render(request, 'profile.html', {'donatedbook': donatedbook})
+
+    lb = lend.objects.filter(user=request.user)
+
+
+    return render(request, 'profile.html', {'donatedbook': donatedbook,'lb':lb})
 
 
 
@@ -116,3 +122,29 @@ def profile(request):
 def book_details(request, book_id):
     b = Book.objects.get(pk=book_id)
     return render(request,"bookdetails.html", {"b":b})
+
+
+#lend Book
+@login_required(login_url='login')
+def lend_view(request, book_id):
+    b = Book.objects.get(pk=book_id)
+    b.status = "B"
+    b.save()
+    nb = Book.objects.get(pk=book_id)
+    lb = lend(book=nb,user=request.user)
+    lb.save()
+
+    return render(request, "success.html")
+
+
+#return lended book
+
+@login_required(login_url='login')
+def return_book(request, book_id,lbbook_id):
+    b = Book.objects.get(pk=book_id)
+    b.status = "A"
+    b.save()
+    lb = lend.objects.get(pk=lbbook_id)
+    lb.delete()
+
+    return render(request, "success.html")
