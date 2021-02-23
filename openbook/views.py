@@ -108,10 +108,7 @@ def view_book(request):
 @login_required(login_url='login')
 def profile(request):
     donatedbook = Book.objects.filter(user=request.user)
-
     lb = lend.objects.filter(user=request.user)
-
-
     return render(request, 'profile.html', {'donatedbook': donatedbook,'lb':lb})
 
 
@@ -130,8 +127,7 @@ def lend_view(request, book_id):
     b = Book.objects.get(pk=book_id)
     b.status = "B"
     b.save()
-    nb = Book.objects.get(pk=book_id)
-    lb = lend(book=nb,user=request.user)
+    lb = lend(book=b,user=request.user)
     lb.save()
 
     return render(request, "success.html")
@@ -146,5 +142,4 @@ def return_book(request, book_id,lbbook_id):
     b.save()
     lb = lend.objects.get(pk=lbbook_id)
     lb.delete()
-
     return render(request, "success.html")
