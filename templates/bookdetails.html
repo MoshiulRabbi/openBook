@@ -11,11 +11,11 @@
     
     <ul>
         
-        {%if request.user.username != b.user.username%}
-        <a href="{% url 'lend' b.id %}" >Lend this Book</a>
-
-        {%else %}
+        {%if request.user == b.user%}
         <p><strong>Youre the owner of this Book</strong></p>
+        
+        {%else %}
+        <a href="{% url 'lend' b.id %}" >Lend this Book</a>
 
         {%endif%}
 
