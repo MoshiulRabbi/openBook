@@ -30,7 +30,7 @@
 
     <ul>
         {% for lbbook in lb %}
-        <a href="{% url 'returnbook' lbbook.book.id lbbook.id %}" >Return this Book</a>
+        <a href="{% url 'returnbook' lbbook.book.id %}" >Return this Book</a>
         <li>lend id: {{lbbook.id}}</li>
         <li>Book id: {{lbbook.book.id}}</li>
         <li>Book name: {{lbbook.book.name}}</li>

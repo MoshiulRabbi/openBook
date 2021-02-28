@@ -133,13 +133,34 @@ def lend_view(request, book_id):
     return render(request, "success.html")
 
 
+#return lended book main
+
+# @login_required(login_url='login')
+# def return_book(request, book_id,lbbook_id):
+#     b = Book.objects.get(pk=book_id)
+#     b.status = "A"
+#     b.save()
+#     lb = lend.objects.get(pk=lbbook_id)
+#     lb.delete()
+#     return render(request, "success.html")
+
+
+
+
+
 #return lended book
 
 @login_required(login_url='login')
-def return_book(request, book_id,lbbook_id):
+def return_book(request, book_id):
     b = Book.objects.get(pk=book_id)
     b.status = "A"
     b.save()
-    lb = lend.objects.get(pk=lbbook_id)
+
+    #Getting the lendbook id using related name
+    lbookid = b.lendby.get().id
+    lb = lend.objects.get(pk=lbookid)
     lb.delete()
+
     return render(request, "success.html")
+
+

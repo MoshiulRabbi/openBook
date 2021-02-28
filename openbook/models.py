@@ -22,7 +22,7 @@ class Book(models.Model):
 
 
 class lend(models.Model):
-    book = models.ForeignKey(Book,on_delete=models.CASCADE,null=True)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE,null=True, related_name="lendby")
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
