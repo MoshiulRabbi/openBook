@@ -114,17 +114,6 @@ def view_book(request):
 
 
 
-    
-    # if request.method == 'GET':
-    #     query = request.GET.get('q')
-    #     books = books.filter(name__contains=query)
-    #     return render(request, "allbook.html", {'books': books})
-    # else:
-    #     return render(request, "allbook.html", {'books': books})
-
-
-
-
 
 
 

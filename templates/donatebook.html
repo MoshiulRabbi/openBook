@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DonateBook</title>
-</head>
-<body>
+{% extends "base.html" %} 
+
+{% block body %} 
+{% block title %}Donate Book{% endblock %}
+
+
+
   <center>
+    <br> <br>
     <h2>DonateBook</h2>
 
     {% if message %}
@@ -37,5 +36,5 @@
       <a class="nav-link" href="{% url 'viewbook' %}">View all book</a>
     </center>
 
-</body>
-</html>
+
+{% endblock %}

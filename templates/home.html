@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <center>
-    <h1>hello {{request.user.username}}</h1>
+{% extends "base.html" %} 
 
-    <a class="nav-link" href="{% url 'logout' %}">Log Out</a> <br>
-    <a class="nav-link" href="{% url 'viewbook' %}">view all the book</a><br>
-    <a class="nav-link" href="{% url 'donatebook' %}">Donate Boook</a><br>
-    <a class="nav-link" href="{% url 'profile' %}">Profile</a><br>
-    
+{% block body %} 
+{% block title %}Home{% endblock %}
+<br> <br>
+<center>
+<h1>hello {{request.user.username}}</h1>
+
 </center>
 
-</body>
-</html>
+{% endblock %}
