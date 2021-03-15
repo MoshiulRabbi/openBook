@@ -86,10 +86,16 @@ def donatebook_view(request):
 
         bookname = request.POST["bookname"]
         author = request.POST["author"]
-        status = "A"
-        b = Book(name=bookname,author=author,user=request.user,status=status)
-        b.save()
-        return render(request,"donatebook.html",{
+
+        if bookname == '' or author == '':
+            return render(request,"donatebook.html",{
+            "message": "Name or Author Cant be Empty"
+        })
+        else:
+            status = "A"
+            b = Book(name=bookname,author=author,user=request.user,status=status)
+            b.save()
+            return render(request,"donatebook.html",{
             "message": "added book"
         })
     else:
