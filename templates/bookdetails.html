@@ -19,8 +19,6 @@
             <h5>Donated By: {{b.user}}</h5>
             <h5>Book id: {{b.id}}</h5>
 
-
-
             {%if request.user == b.user%}
             <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
             {%else %}
