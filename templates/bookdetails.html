@@ -1,33 +1,39 @@
 {% extends "base.html" %} 
 
-{% block body %} 
-{% block title %}Details{% endblock %}
-<br> <br><br> <br>
+{% block body %}
+<br>
+{% block title %}Book Details{% endblock %}
 
 
-    <center>
-    
-    <ul>
-        
-        {%if request.user == b.user%}
-        <p><strong>Youre the owner of this Book</strong></p>
-        
-        {%else %}
-        <a href="{% url 'lend' b.id %}" >Lend this Book</a>
+<br> <br>
 
-        {%endif%}
-
-        <li>Book id: {{b.id}}</li>
-        <li>Donated By: {{b.user}}</li>
-        <li>Book name: {{b.name}}</li>
-        <li>Book Author: {{b.author}}</li>
-        <br><br>
-      
+        <div class="w3-container w3-center">
+            <h2>Book Details</h2><br><br>           
+            <br>
+  
+        <div class="w3-card">
+          <div class="w3-container w3-center">
+            <h3>{{b.name}}</h3>
+            <p class="w3-opacity">by {{book.author}}</p>
+            <h5>{{b.author}}</h5>
+            <h5>Donated By: {{b.user}}</h5>
+            <h5>Book id: {{b.id}}</h5>
 
 
-    </ul>
-</center>
 
+            {%if request.user == b.user%}
+            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
+            {%else %}
+            <a href="{% url 'lend' b.id %}">
+            
+                <p><button class="w3-button w3-light-grey w3-block"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
+
+        </a>
+            {%endif%}
+          </div>
+        </div>
+
+          
 
 
 {% endblock %}
