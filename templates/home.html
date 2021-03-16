@@ -6,6 +6,12 @@
 <center>
 <h1>hello {{request.user.username}}</h1>
 
+
+{% if message %}
+<div>{{ message }}</div>
+{% endif %}
+
+
 </center>
 
 {% endblock %}

@@ -78,12 +78,11 @@ def logout_view(request):
 
 
 
-
+#Donate Book 
 @login_required(login_url='login')
 @csrf_exempt
 def donatebook_view(request):
     if request.method == 'POST':
-
         bookname = request.POST["bookname"]
         author = request.POST["author"]
 
@@ -109,7 +108,6 @@ def donatebook_view(request):
 @login_required(login_url='login')
 def view_book(request):
     books = Book.objects.filter(status="A")
-
     query = request.GET.get('q')
 
     if query:
@@ -117,9 +115,6 @@ def view_book(request):
         return render(request, "allbook.html", {'books': books})
     else:
         return render(request, "allbook.html", {'books': books})
-
-
-
 
 
 
@@ -148,23 +143,7 @@ def lend_view(request, book_id):
     b.save()
     lb = lend(book=b,user=request.user)
     lb.save()
-
-    return render(request, "success.html")
-
-
-#return lended book main
-
-# @login_required(login_url='login')
-# def return_book(request, book_id,lbbook_id):
-#     b = Book.objects.get(pk=book_id)
-#     b.status = "A"
-#     b.save()
-#     lb = lend.objects.get(pk=lbbook_id)
-#     lb.delete()
-#     return render(request, "success.html")
-
-
-
+    return render(request, "home.html",{"message":"Successfully Lended"})
 
 
 #return lended book
@@ -180,6 +159,6 @@ def return_book(request, book_id):
     lb = lend.objects.get(pk=lbookid)
     lb.delete()
 
-    return render(request, "success.html")
+    return render(request, "home.html",{"message":"Returned Book"})
 
 
