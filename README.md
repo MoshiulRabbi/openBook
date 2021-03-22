@@ -1,2 +1,4 @@
 # Open-Book
-A library management system
+
+A Virtual Sharing Platform where user can share book with each other.
+
