@@ -1,37 +1,64 @@
 {% extends "base.html" %} 
-
 {% block body %}
 <br>
 {% block title %}Book Details{% endblock %}
-
-
+<style>
+   * {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   }
+   body {
+   font-family: Arial,Tahoma;
+   background-color: #f7f7f7;
+   color: #636363;
+   }
+   img {
+   max-width: 100%;
+   height: auto;
+   }
+   a {
+   color: #3497db;
+   text-decoration: none;
+   }
+   .spacer > * ~ * {
+   margin-top: 8px;
+   }
+   .products {
+   margin: 1.1rem auto;
+   }
+   .products_item {
+   border: 2px solid #f0f0f0;
+   box-shadow: 2px 2px 8px #f0f0f0;
+   margin: inherit;
+   padding: 12px;
+   width: 380px;
+   overflow: hidden;
+   border-radius: 4px;
+   background-color: #ffffff;
+   }
+   .products_item_label {
+   color: #2b2b2b;
+   }
+</style>
 <br> <br>
-
-        <div class="w3-container w3-center">
-            <h2>Book Details</h2><br><br>           
-            <br>
-  
-        <div class="w3-card">
-          <div class="w3-container w3-center">
-            <h3>{{b.name}}</h3>
-            <p class="w3-opacity">by {{book.author}}</p>
-            <h5>{{b.author}}</h5>
-            <h5>Donated By: {{b.user}}</h5>
-            <h5>Book id: {{b.id}}</h5>
-
-            {%if request.user == b.user%}
-            <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
-            {%else %}
-            <a href="{% url 'lend' b.id %}">
-            
-                <p><button class="w3-button w3-light-grey w3-block"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
-
-        </a>
-            {%endif%}
-          </div>
-        </div>
-
-          
-
-
+<section class="products">
+   <div class="products_item spacer">
+   <div class="product_item_image">
+      <img src="https://static.wikia.nocookie.net/dark-netflix/images/a/a8/Dark_US_Poster.jpg/revision/latest/scale-to-width-down/333?cb=20171113104852" alt="Cozmic Robot">
+   </div>
+   <div class="products_item_label">
+      <h3>{{b.name}}</h3>
+      <h4>By {{b.author}}</h4>
+      <h5>Donated By: {{b.user}}</h5>
+      <h5>Book id: {{b.id}}</h5>
+      {%if request.user == b.user%}
+      <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
+      {%else %}
+      <a href="{% url 'lend' b.id %}">
+         <p><button class="w3-button w3-light-grey w3-block"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
+      </a>
+      {%endif%}
+   </div>
+</section>
 {% endblock %}
