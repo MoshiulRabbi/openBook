@@ -3,24 +3,8 @@
 <br>
 {% block title %}Book Details{% endblock %}
 <style>
-   * {
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
-   }
-   body {
-   font-family: Arial,Tahoma;
-   background-color: #f7f7f7;
-   color: #636363;
-   }
-   img {
-   max-width: 100%;
-   height: auto;
-   }
-   a {
-   color: #3497db;
-   text-decoration: none;
-   }
+
+
    .spacer > * ~ * {
    margin-top: 8px;
    }
@@ -40,12 +24,29 @@
    .products_item_label {
    color: #2b2b2b;
    }
+
+.ff {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.ff:hover {
+  opacity: 0.7;
+}
+
 </style>
 <br> <br>
 <section class="products">
    <div class="products_item spacer">
    <div class="product_item_image">
-      <img src="{{b.ImageLink}}" alt="Cozmic Robot">
+      <img src="{{b.ImageLink}}" style=  "  width:400px;
+      height:300px;">
    </div>
    <div class="products_item_label">
       <h3>{{b.name}}</h3>
@@ -53,10 +54,10 @@
       <h5>Donated By: {{b.user}}</h5>
       <h5>Book id: {{b.id}}</h5>
       {%if request.user == b.user%}
-      <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
+      <p><button class="ff"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
       {%else %}
       <a href="{% url 'lend' b.id %}">
-         <p><button class="w3-button w3-light-grey w3-block"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
+         <p><button class="ff"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
       </a>
       {%endif%}
    </div>
