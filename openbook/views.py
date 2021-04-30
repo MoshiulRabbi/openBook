@@ -1,3 +1,4 @@
+from django.db.models.fields.files import ImageField
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -85,6 +86,7 @@ def donatebook_view(request):
     if request.method == 'POST':
         bookname = request.POST["bookname"]
         author = request.POST["author"]
+        ImageLink = request.POST["url"]
 
         if bookname == '' or author == '':
             return render(request,"donatebook.html",{
@@ -92,7 +94,7 @@ def donatebook_view(request):
         })
         else:
             status = "A"
-            b = Book(name=bookname,author=author,user=request.user,status=status)
+            b = Book(name=bookname,author=author,ImageLink=ImageLink,user=request.user,status=status)
             b.save()
             return render(request,"donatebook.html",{
             "message": "added book"

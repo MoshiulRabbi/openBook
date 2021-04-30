@@ -12,6 +12,7 @@ class User(AbstractUser):
 class Book(models.Model):
     name = models.CharField(max_length=25)
     author = models.CharField(max_length=25)
+    ImageLink = models.URLField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=10)
     # user = models.CharField(max_length=25)
