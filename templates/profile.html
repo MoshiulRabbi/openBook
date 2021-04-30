@@ -1,49 +1,71 @@
 {% extends "base.html" %} 
-
 {% block body %} 
 {% block title %}Profile{% endblock %}
-
-
+<style>
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    }
+    .price {
+    color: grey;
+    font-size: 22px;
+    }
+    .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    }
+    .card button:hover {
+    opacity: 0.7;
+    }
+    .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 50px;
+    }
+</style>
 <br> <br>
-
-
-    <center>
-
+<center>
     <h2>Profile</h2>
- 
-
     <h1>hello {{request.user.username}} You donated these Book</h1>
-
-    <ul>
+    <div class="grid-container">
         {% for book in donatedbook %}
-        <p>Delete </p>
-        <li>Book id: {{book.id}}</li>
-        <li>Book name: {{book.name}}</li>
-        <li>Book Author: {{book.author}}</li>
-        <li>Book Status: {{book.status}}</li>
-        <br><br>
+        <div class="card">
+            <img src="{{book.ImageLink}}" style=  "  width:200px;
+                height:200px;">
+            <p>Book id: {{book.id}}</p>
+            <p>Book name: {{book.name}}</p>
+            <p>Book Author: {{book.author}}</p>
+            <p>Book Status: {{book.status}}</p>
+        </div>
         {% endfor %}
-
-
-    </ul>
-
+    </div>
     <h1>You lended these Book</h1>
-
-    <ul>
+    <div class="grid-container">
         {% for lbbook in lb %}
-        <a href="{% url 'returnbook' lbbook.book.id %}" >Return this Book</a>
-        <li>lend id: {{lbbook.id}}</li>
-        <li>Book id: {{lbbook.book.id}}</li>
-        <li>Book name: {{lbbook.book.name}}</li>
-        <li>Book Author: {{lbbook.book.author}}</li>
-        <li>Book Owner: {{lbbook.book.user.username}}</li>
-        <li>Book Status : {{lbbook.book.status}}</li>
-        <br><br>
+        <div class="card">
+            <img src="{{lbbook.book.ImageLink}}" style=  "  width:200px;
+                height:200px;">
+            <p>lend id: {{lbbook.id}}</p>
+            <p>Book id: {{lbbook.book.id}}</p>
+            <p>Book name: {{lbbook.book.name}}</p>
+            <p>Book Author: {{lbbook.book.author}}</p>
+            <p>Book Owner: {{lbbook.book.user.username}}</p>
+            <p>Book Status : {{lbbook.book.status}}</p>
+            <a href="{% url 'returnbook' lbbook.book.id %}">
+                <p><button>Return This Book</button></p>
+            </a>
+        </div>
         {% endfor %}
-
-
-    </ul>
+    </div>
 </center>
-
-   
 {% endblock %}
