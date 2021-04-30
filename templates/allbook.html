@@ -2,65 +2,59 @@
 {% block body %}
 <br>
 {% block title %}Book Details{% endblock %}
-    
 <style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-.price {
-  color: grey;
-  font-size: 22px;
-}
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-.card button:hover {
-  opacity: 0.7;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 50px;
-}
-
-
-
-
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    }
+    .price {
+    color: grey;
+    font-size: 22px;
+    }
+    .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    }
+    .card button:hover {
+    opacity: 0.7;
+    }
+    .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 50px;
+    }
 </style>
-
 <br>
 <h2 style="text-align:center">Available Book</h2>
 <center>
-<form action="{% url 'viewbook' %}" method="get">
-    <input name="q"  placeholder="Search...">
-    <button type="submit">Search</button>
-  </form></center>
-  <br><br>
-
+    <form action="{% url 'viewbook' %}" method="get">
+        <input name="q"  placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+</center>
+<br><br>
 <div class="grid-container">
     {% for book in books %}
-<div class="card">
-  <img src="{{book.ImageLink}}" style=  "  width:200px;
-  height:200px;">
-  <h1>{{book.name}}</h1>
-  <p class="price">{{book.author}}</p>
-  <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
-  <a href="{% url 'book_details' book.id %}"> 
-  <p><button>Check Details</button></p>
-</a>
-</div>
-{% endfor %}
+    <div class="card">
+        <img src="{{book.ImageLink}}" style=  "  width:200px;
+            height:200px;">
+        <h1>{{book.name}}</h1>
+        <p class="price">{{book.author}}</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <a href="{% url 'book_details' book.id %}">
+            <p><button>Check Details</button></p>
+        </a>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
