@@ -1,39 +1,30 @@
 {% extends "base.html" %} 
-
 {% block body %} 
 {% block title %}View Book Store{% endblock %}
+<style>
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    }
+</style>
 <center>
     <br><br>
     <h2>All Book List</h2>
-
     <form action="{% url 'viewbook' %}" method="get">
         <input name="q"  placeholder="Search...">
         <button type="submit">Search</button>
-      </form>
-
-
-    
-        {% for book in books %}
-        
-        <!-- <li>Book id: {{book.id}}</li>
-        <li>Donated By: {{book.user}}</li> -->
-
-            <a href="{% url 'book_details' book.id %}" >
-
-        <li>Book name: {{book.name}}</li>
-    </a>
+    </form>
+    {% for book in books %}
+    <div class="card">
+        <a href="{% url 'book_details' book.id %}" >
+            <li>Book name: {{book.name}}</li>
+        </a>
         <li>Book Author: {{book.author}}</li>
-    
-
-
-        <br><br>
-        {% endfor %}
-
-
-  
-    <a class="nav-link" href="{% url 'donatebook' %}">Donate Boook</a>
+    </div>
+    <br><br>
+    {% endfor %}
 </center>
-
-
-
 {% endblock %}
