@@ -17,6 +17,7 @@
         <input name="q"  placeholder="Search...">
         <button type="submit">Search</button>
     </form>
+    <br><br>
     {% for book in books %}
     <div class="card">
         <a href="{% url 'book_details' book.id %}" >
