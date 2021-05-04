@@ -1,11 +1,9 @@
-{% extends "base.html" %} 
+{% extends "base2.html" %} 
 
 {% block body %} 
-{% block title %}Home{% endblock %}
 <br> <br>
 <center>
 <h1>hello {{request.user.username}}</h1>
-
 
 {% if message %}
 <div>{{ message }}</div>

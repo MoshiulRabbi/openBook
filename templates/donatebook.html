@@ -1,14 +1,10 @@
-{% extends "base.html" %} 
+{% extends "base2.html" %} 
 
 {% block body %} 
-{% block title %}Donate Book{% endblock %}
-
-
+<h2>{% block title %}Donate Book{% endblock %}</h2>
 
   <center>
     <br> <br>
-    <h2>DonateBook</h2>
-
     {% if message %}
     <div>{{ message }}</div>
     {% endif %}
@@ -39,9 +35,8 @@
             placeholder="Image url"
           />
         </div>
-        <input class="btn btn-primary" type="submit" value="donatebook" />
+        <input class="btn btn-primary" type="submit" value="Donate" />
       </form>
-      <a class="nav-link" href="{% url 'viewbook' %}">View all book</a>
     </center>
 
 

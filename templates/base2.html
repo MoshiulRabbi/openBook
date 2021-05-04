@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <title>{% block title %}Open Book{% endblock %}</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css'>
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link href="{% static 'css/product.css' %}" rel="stylesheet">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="{% static 'css/allbook.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bookdetails.css' %}" rel="stylesheet">
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -16,7 +17,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="{% url 'viewbook' %}">Open Book</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -57,7 +58,29 @@
 
 
             <li>
-                <a href="#">
+              <a href="{% url 'viewbook' %}">
+                <i class="fa fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+              </a>
+              <!-- <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a href="#">Dashboard 1
+                      <span class="badge badge-pill badge-success">Pro</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">Dashboard 2</a>
+                  </li>
+                  <li>
+                    <a href="#">Dashboard 3</a>
+                  </li>
+                </ul>
+              </div> -->
+
+
+            <li>
+                <a href="{% url 'donatebook' %}">
                   <i class="fa fa-book"></i>
                   <span>Donate Book</span>
                 </a>
@@ -65,34 +88,14 @@
           </li>
 
           <li>
-            <a href="#">
+            <a href="{% url 'profile' %}">
               <i class="fa fa-book"></i>
               <span>Edit Profile</span>
             </a>
           </li>
       </li>
 
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-tachometer-alt"></i>
-              <span>Dashboard</span>
-              <span class="badge badge-pill badge-warning">New</span>
-            </a>
-            <!-- <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div> -->
+
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
@@ -139,8 +142,10 @@
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
 
-      <a href="#">
+      <a href="{% url 'logout'  %}">
+        <span>Logout</span>
         <i class="fa fa-power-off"></i>
+        
       </a>
     </div>
   </nav>
