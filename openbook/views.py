@@ -163,15 +163,3 @@ def return_book(request, book_id):
 
     return render(request, "home.html",{"message":"Returned Book"})
 
-
-#test
-def base2(request):
-    books = Book.objects.filter(status="A")
-    query = request.GET.get('q')
-
-    if query:
-        books = books.filter(name__contains=query)
-        return render(request, "base2.html", {'books': books})
-    else:
-        return render(request, "base2.html", {'books': books})
-    
