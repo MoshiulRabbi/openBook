@@ -30,4 +30,10 @@ class lend(models.Model):
 
 
 
-
+class review(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE,null=True, related_name="review")
+    comment = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.user.username
