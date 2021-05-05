@@ -163,3 +163,17 @@ def return_book(request, book_id):
 
     return render(request, "home.html",{"message":"Returned Book"})
 
+
+#Review Page
+@login_required(login_url='login')
+def review(request):
+    lb = lend.objects.filter(user=request.user)
+    return render(request, 'ReviewPage.html', {'lb':lb})
+
+
+
+#Add Review Page
+@login_required(login_url='login')
+def AddReview(request,book_id):
+    b = Book.objects.get(pk=book_id)
+    return render(request,"AddReview.html", {"b":b})

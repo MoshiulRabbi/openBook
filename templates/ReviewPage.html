@@ -1,0 +1,29 @@
+{% extends "base2.html" %} 
+{% block body %} 
+
+<h2>{% block title %}Review Book{% endblock %}</h2>
+
+<br> <br>
+<center>
+  
+    
+    
+    <div class="grid-container">
+        {% for lbbook in lb %}
+        <div class="card">
+            <img src="{{lbbook.book.ImageLink}}" style=  "  width:200px;
+                height:200px;">
+            <p>lend id: {{lbbook.id}}</p>
+            <p>Book id: {{lbbook.book.id}}</p>
+            <p>Book name: {{lbbook.book.name}}</p>
+            <p>Book Author: {{lbbook.book.author}}</p>
+            <p>Book Owner: {{lbbook.book.user.username}}</p>
+            <p>Book Status : {{lbbook.book.status}}</p>
+            <a href="{% url 'AddReview' lbbook.book.id %}">
+                <p><button>ReView</button></p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</center>
+{% endblock %}

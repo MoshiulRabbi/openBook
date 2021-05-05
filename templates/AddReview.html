@@ -1,0 +1,39 @@
+{% extends "base2.html" %}
+{% block body %}
+
+<br>
+<h2>{% block title %}Book Details{% endblock %}</h2>
+<br> <br>
+<div class="grid-container">
+<section class="products">
+   <div class="products_item spacer">
+   <div class="product_item_image">
+      <img src="{{b.ImageLink}}" style=  "  width:400px;
+      height:300px;">
+   </div>
+   <div class="products_item_label">
+      <h3>{{b.name}}</h3>
+      <h4>By {{b.author}}</h4>
+      <h5>Donated By: {{b.user}}</h5>
+      <h5>Book id: {{b.id}}</h5>
+      {%if request.user == b.user%}
+      <p><button class="ff"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
+      {%else %}
+      <a href="{% url 'lend' b.id %}">
+         <p><button class="ff"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
+      </a>
+      {%endif%}
+   </div>
+</section>
+<br>
+<div >
+   <h3>Review of this Book</h3>
+   <br><br>
+   <h4>Rabbi: Good Book</h4>
+   <br>
+   <h4>Jidny: This book is a trash</h4>
+   <input type="text" placeholder="addrevirew">
+   <button>add</button>
+</div>
+</div>
+{% endblock %}
