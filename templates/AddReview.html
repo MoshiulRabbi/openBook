@@ -16,24 +16,30 @@
       <h4>By {{b.author}}</h4>
       <h5>Donated By: {{b.user}}</h5>
       <h5>Book id: {{b.id}}</h5>
-      {%if request.user == b.user%}
-      <p><button class="ff"><i class="fa fa-envelope"></i> Youre the owner of this Book</button></p>
-      {%else %}
-      <a href="{% url 'lend' b.id %}">
-         <p><button class="ff"><i class="fa  fa-handshake-o"></i> Lend This Book</button></p>
-      </a>
-      {%endif%}
    </div>
 </section>
 <br>
 <div >
    <h3>Review of this Book</h3>
    <br><br>
-   <h4>{{}}: Good Book</h4>
+   {% for re in rev %}
+
+   <h4>{{re.user.username}}: {{re.comment}}</h4>
    <br>
-   <h4>{{}}: This book is a trash</h4>
-   <input type="text" placeholder="addrevirew">
-   <button>add</button>
+   {% endfor %}
+   <form action="{% url 'AddReview' b.id %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <input
+          autofocus
+          class="form-control"
+          type="text"
+          name="comment"
+          placeholder="Review"
+        />
+      </div>
+      <input class="btn btn-primary" type="submit" value="Submit"/>
+    </form>
 </div>
 </div>
 {% endblock %}

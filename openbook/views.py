@@ -134,7 +134,8 @@ def profile(request):
 @login_required(login_url='login')
 def book_details(request, book_id):
     b = Book.objects.get(pk=book_id)
-    return render(request,"bookdetails.html", {"b":b})
+    rev = BookReview.objects.filter(book=b)
+    return render(request,"bookdetails.html", {"b":b,"rev":rev})
 
 
 #lend Book
@@ -175,5 +176,15 @@ def review(request):
 #Add Review Page
 @login_required(login_url='login')
 def AddReview(request,book_id):
+
     b = Book.objects.get(pk=book_id)
-    return render(request,"AddReview.html", {"b":b})
+
+    if request.method == "POST":
+        user = request.user
+        comment = request.POST["comment"]
+        rev = BookReview(book=b,user=user,comment=comment)
+        rev.save()
+        return render(request, "home.html",{"message":"Review Added"})
+    else:
+        rev = BookReview.objects.filter(book=b)
+        return render(request,"AddReview.html", {"b":b,"rev":rev})

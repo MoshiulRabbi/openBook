@@ -1,11 +1,11 @@
 from django.contrib import admin
-from openbook.models import Book,User,lend,review
+from openbook.models import Book,User,lend,BookReview
 
 # Register your models here.
 
 admin.site.register(Book)
 admin.site.register(lend)
-admin.site.register(review)
+admin.site.register(BookReview)
 
 
 

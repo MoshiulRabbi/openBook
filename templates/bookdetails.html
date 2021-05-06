@@ -26,14 +26,19 @@
    </div>
 </section>
 <br>
+{% if rev %}
+
 <div >
    <h3>Review of this Book</h3>
    <br><br>
-   <h4>Jonas: Good Book</h4>
+   {% for re in rev %}
+
+   <h4>{{re.user.username}}: {{re.comment}}</h4>
    <br>
-   <h4>Martha: This book is a trash</h4>
+   {% endfor %}
    <br>
    <h5>Lend this Book and Read to give a review</h5>
 </div>
+{% endif %}
 </div>
 {% endblock %}
