@@ -14,7 +14,7 @@ class Book(models.Model):
     author = models.CharField(max_length=25)
     ImageLink = models.URLField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10)
+    status = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

@@ -19,9 +19,6 @@ def home_view(request):
     else:
         return render(request,"initial-home.html")
 
-    
-
-
 
 
 def login_view(request):
@@ -93,8 +90,7 @@ def donatebook_view(request):
             "message": "Name or Author Cant be Empty"
         })
         else:
-            status = "A"
-            b = Book(name=bookname,author=author,ImageLink=ImageLink,user=request.user,status=status)
+            b = Book(name=bookname,author=author,ImageLink=ImageLink,user=request.user)
             b.save()
             return render(request,"donatebook.html",{
             "message": "added book"
@@ -109,7 +105,7 @@ def donatebook_view(request):
 #All the Book Donated By all the User
 @login_required(login_url='login')
 def view_book(request):
-    books = Book.objects.filter(status="A")
+    books = Book.objects.filter(status=True)
     query = request.GET.get('q')
 
     if query:
@@ -142,7 +138,7 @@ def book_details(request, book_id):
 @login_required(login_url='login')
 def lend_view(request, book_id):
     b = Book.objects.get(pk=book_id)
-    b.status = "B"
+    b.status = False
     b.save()
     lb = lend(book=b,user=request.user)
     lb.save()
@@ -154,7 +150,7 @@ def lend_view(request, book_id):
 @login_required(login_url='login')
 def return_book(request, book_id):
     b = Book.objects.get(pk=book_id)
-    b.status = "A"
+    b.status = True
     b.save()
 
     #Getting the lendbook id using related name
