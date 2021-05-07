@@ -36,4 +36,4 @@ class BookReview(models.Model):
     comment = models.CharField(max_length=100)
     
     def __str__(self):
-        return self.user.username
+        return f"{self.book.name} reviewed by {self.user.username}"
