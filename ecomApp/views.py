@@ -1,4 +1,3 @@
-from openbook.views import profile
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Product
