@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import CharField
 
 # Create your models here.
@@ -10,3 +11,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+#Building Basic Structure
+class Cart(models.Model):
+    orderedProduct = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.orderedProduct.name}"
+
+    def totalItemPrice(self):
+        return self.quantity * self.orderedProduct.price
