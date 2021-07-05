@@ -1,0 +1,16 @@
+{% extends "base2.html" %} 
+{% block body %}
+
+<h2>Cart</h2>
+<br>
+<br><br>
+<div class="grid-container">
+    {% for item in c %}
+    <div class="card">
+        <img src="{{item.orderedProduct.image}}" style=  "  width:200px;
+            height:200px;">
+        <h1>{{item.orderedProduct.name}}</h1>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

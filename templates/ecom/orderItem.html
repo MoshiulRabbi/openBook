@@ -1,0 +1,26 @@
+{% extends "base2.html" %}
+{% block body %}
+
+<br>
+<h2>{% block title %}Order Item{% endblock %}</h2>
+<br> <br>
+<div class="grid-container">
+<section class="products">
+   <div class="products_item spacer">
+   <div class="product_item_image">
+      <img src="{{item.image}}" style=  "  width:400px;
+      height:300px;">
+   </div>
+   <div class="products_item_label">
+      <h3>{{item.name}}</h3>
+      <h4>{{item.price}}</h4>
+      <h4>{{item.user}}</h4>
+
+      <a href="{% url 'addToCart' item.id %}">
+         <p><button class="ff"><i class="fa  fa-handshake-o"></i> Add to Cart</button></p>
+      </a>
+
+   </div>
+</section>
+</div>
+{% endblock %}

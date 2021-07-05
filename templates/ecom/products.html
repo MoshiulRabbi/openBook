@@ -12,8 +12,8 @@
         <h1>{{item.name}}</h1>
         <p class="price">{{item.price}} $</p>
         <p>{{item.detail}}</p>
-        <a href="#">
-            <p><button>Add to Cart</button></p>
+        <a href="{% url 'orderItem' item.id %}">
+            <p><button>Check Details</button></p>
         </a>
     </div>
     {% endfor %}
