@@ -20,7 +20,10 @@
       <div class="page">
         <div class="header">
           <h1 class="logo">OpenBook</h1>
-          <br /><br />
+          <br />
+          {% if message %}
+          <p style="color: red">{{ message }}</p>
+          {% endif %}
           <div></div>
         </div>
         <div class="container">
@@ -34,9 +37,6 @@
             <input type="password" placeholder="Password" name="password" />
             <button type="submit" value="Login">Log In</button>
           </form>
-          {% if message %}
-          <p style="color: red">{{ message }}</p>
-          {% endif %}
         </div>
       </div>
       <div class="option">
