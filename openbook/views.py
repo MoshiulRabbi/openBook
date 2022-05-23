@@ -17,7 +17,7 @@ def home_view(request):
     if request.user.is_authenticated:
         return render(request, "home.html")
     else:
-        return render(request,"initial-home.html")
+        return render(request,"v2/login.html")
 
 
 
@@ -34,11 +34,11 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("home"))
         else:
-            return render(request, "login.html", {
+            return render(request, "v2/login.html", {
                 "message": "Invalid username and/or password."
             })
     else:
-        return render(request, "login.html") 
+        return render(request, "v2/login.html") 
 
 
 def register(request):
@@ -50,7 +50,7 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "register.html", {
+            return render(request, "v2/register.html", {
                 "message": "Passwords must match."
             })
 
@@ -59,13 +59,13 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "register.html", {
+            return render(request, "v2/register.html", {
                 "message": "Username already taken."
             })
         login(request, user)
         return HttpResponseRedirect(reverse("home"))
     else:
-        return render(request, "register.html")
+        return render(request, "v2/register.html")
 
 
 
