@@ -54,6 +54,12 @@ def register(request):
                 "message": "Passwords must match."
             })
 
+        #Check Required Field
+        if username == '' or email == '' or password == '' or confirmation == '':
+            message="Please input data in the fields"
+            return render(request, "v2/register.html",{"message":message})
+
+
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)

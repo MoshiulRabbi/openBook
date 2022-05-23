@@ -40,7 +40,7 @@
             {% csrf_token %}
             <input type="text" placeholder="Username" name="username" />
             <input type="text" placeholder="Email" name="email" />
-            <input type="text" placeholder="Password" name="password" />
+            <input type="password" placeholder="Password" name="password" />
             <input
               type="password"
               placeholder="Confirm Password"
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="option">
-        <p>Have an account? <a href="login.html">Log in</a></p>
+        <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
       </div>
       <div class="footer">
         <p>© 2022</p>
